@@ -13,3 +13,6 @@ Delområde (More Specific Part of County)
 Some crops we can disregards entirely because there isn't a lot of data for us to work with
 ![image](https://github.com/user-attachments/assets/1f78137a-60bc-4b45-ba07-2f3e0c4fb2b8)
 
+
+Most common pest
+![image](https://github.com/user-attachments/assets/210d248b-22b0-47e1-8cb8-ec9ad1ce808b)
