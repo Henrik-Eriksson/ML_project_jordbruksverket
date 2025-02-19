@@ -17,5 +17,9 @@ Some crops we can disregards entirely because there isn't a lot of data for us t
 Most common pest
 ![image](https://github.com/user-attachments/assets/210d248b-22b0-47e1-8cb8-ec9ad1ce808b)
 
+see heatmap html for interactive
+![image](https://github.com/user-attachments/assets/88a27948-2f38-4ae1-a100-ed0d6965d983)
+
+
 Composite graph for all counts of pests for each crop
 https://github.com/Henrik-Eriksson/ML_project_jordbruksverket/blob/main/composite_groda_skadegorare_grid_sorted.html
