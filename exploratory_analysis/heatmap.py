@@ -20,11 +20,13 @@ with open("../aggregated_data.json", "r", encoding="utf-8") as infile:
 # Prepare lists for the heatmap and for filtered records (inside Sweden).
 heat_data = []
 filtered_records = []
+json_heat_data = []
 not_inside_sweden_ctr = 0
 
 for record in data:
     lat = record.get("latitud")
     lon = record.get("longitud")
+    groda = record.get("groda")
     if lat is None or lon is None:
         continue
     try:
@@ -39,11 +41,16 @@ for record in data:
         # Check if the converted coordinates are inside Sweden.
         if is_inside_sweden(lat_deg, lon_deg):
             heat_data.append([lat_deg, lon_deg])
+            json_heat_data.append([lat_deg, lon_deg])
+            json_heat_data.append(groda)
             filtered_records.append(record)
         else:
             not_inside_sweden_ctr += 1
     except Exception:
         continue
+
+with open("result/lat_lon_fields.json", "w", encoding="utf-8") as outfile:
+    json.dump(json_heat_data, outfile, ensure_ascii=False, indent=2)
 
 print("Number of records outside Sweden:", not_inside_sweden_ctr)
 
