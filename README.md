@@ -3,6 +3,20 @@
 Check what stations have the specific paramtere data
 https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/[PARAMTER].json
 
+Weekly Average Temperature, Max/Min Temperature per week, Total Weekly RainFall, Humidity AVG relative, Windspeed AVG & Peak Windspeed, 
+
+We will pick
+| ID  | Measurement                          | Aggregation Method               |
+|-----|--------------------------------------|----------------------------------|
+| 2   | Daily Average Temperature            | Aggregate Average Weekly         |
+| 19  | Minimum Temperature (once per day)   | Aggregate Minimum Weekly         |
+| 20  | Maximum Temperature (once per day)   | Aggregate Maximum Weekly         |
+| 5   | Rainfall Amount Per Day              | Aggregate Total Amount Weekly    |
+| 6   | Humidity (once per hour)             | Aggregate Weekly or Daily?       |
+| 21  | Gust Wind (once per hour)            | Aggregate Weekly?                |
+| 4   | Wind Speed (10 Min AVG)              | Aggregate Weekly                 |
+
+
 All parameters for SMHI weather
 | Parameter | Title                           | Summary                                                  | Unit                    |
 |-----------|---------------------------------|----------------------------------------------------------|-------------------------|
