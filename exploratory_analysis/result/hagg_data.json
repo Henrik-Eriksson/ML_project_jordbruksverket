@@ -1,1 +1,44 @@
-[]
+[
+  {
+    "lan": "Östergötlands län",
+    "matmetod": "ägg/knopp",
+    "year": 2012,
+    "type": "Hägg",
+    "mean_varde": 1.48
+  },
+  {
+    "lan": "Östergötlands län",
+    "matmetod": "ägg/knopp",
+    "year": 2013,
+    "type": "Hägg",
+    "mean_varde": 0.02
+  },
+  {
+    "lan": "Östergötlands län",
+    "matmetod": "ägg/knopp",
+    "year": 2014,
+    "type": "Hägg",
+    "mean_varde": 0.11
+  },
+  {
+    "lan": "Östergötlands län",
+    "matmetod": "ägg/knopp",
+    "year": 2015,
+    "type": "Hägg",
+    "mean_varde": 0.01
+  },
+  {
+    "lan": "Östergötlands län",
+    "matmetod": "ägg/knopp",
+    "year": 2016,
+    "type": "Hägg",
+    "mean_varde": 1.04
+  },
+  {
+    "lan": "Östergötlands län",
+    "matmetod": "ägg/knopp",
+    "year": 2017,
+    "type": "Hägg",
+    "mean_varde": 0.02
+  }
+]

@@ -1,1 +1,2 @@
 aggregated_data.json filter=lfs diff=lfs merge=lfs -text
+exploratory_analysis/heatmap/sweden_heatmap_split_js.html

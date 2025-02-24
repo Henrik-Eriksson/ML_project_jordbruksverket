@@ -1,1 +1,86 @@
-[]
+[
+  {
+    "lan": "Östergötlands län",
+    "matmetod": "antal/planta",
+    "year": 2012,
+    "type": "Bladlus",
+    "mean_varde": 0.0
+  },
+  {
+    "lan": "Östergötlands län",
+    "matmetod": "% ang plantor",
+    "year": 2012,
+    "type": "Bladlus",
+    "mean_varde": 0.29
+  },
+  {
+    "lan": "Östergötlands län",
+    "matmetod": "% ang plantor",
+    "year": 2013,
+    "type": "Bladlus",
+    "mean_varde": 0.01
+  },
+  {
+    "lan": "Östergötlands län",
+    "matmetod": "antal/planta",
+    "year": 2013,
+    "type": "Bladlus",
+    "mean_varde": 0.0
+  },
+  {
+    "lan": "Östergötlands län",
+    "matmetod": "antal/planta",
+    "year": 2014,
+    "type": "Bladlus",
+    "mean_varde": 0.0
+  },
+  {
+    "lan": "Östergötlands län",
+    "matmetod": "% ang plantor",
+    "year": 2014,
+    "type": "Bladlus",
+    "mean_varde": 0.27
+  },
+  {
+    "lan": "Östergötlands län",
+    "matmetod": "antal/planta",
+    "year": 2015,
+    "type": "Bladlus",
+    "mean_varde": 0.0
+  },
+  {
+    "lan": "Östergötlands län",
+    "matmetod": "% ang plantor",
+    "year": 2015,
+    "type": "Bladlus",
+    "mean_varde": 0.05
+  },
+  {
+    "lan": "Östergötlands län",
+    "matmetod": "% ang plantor",
+    "year": 2016,
+    "type": "Bladlus",
+    "mean_varde": 1.44
+  },
+  {
+    "lan": "Östergötlands län",
+    "matmetod": "antal/planta",
+    "year": 2016,
+    "type": "Bladlus",
+    "mean_varde": 0.0
+  },
+  {
+    "lan": "Östergötlands län",
+    "matmetod": "% ang plantor",
+    "year": 2017,
+    "type": "Bladlus",
+    "mean_varde": 0.0
+  },
+  {
+    "lan": "Östergötlands län",
+    "matmetod": "antal/planta",
+    "year": 2017,
+    "type": "Bladlus",
+    "mean_varde": 0.0
+  }
+]
