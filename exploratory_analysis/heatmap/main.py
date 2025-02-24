@@ -35,7 +35,7 @@ def get_earliest_date(record):
 
 transformer = Transformer.from_crs("EPSG:3006", "EPSG:4326", always_xy=True)
 
-with open("aggregated_data.json", "r", encoding="utf-8") as infile:
+with open("../../aggregated_data.json", "r", encoding="utf-8") as infile:
     data = json.load(infile)
 
 indexed_records = []  # store (record_id, record)
