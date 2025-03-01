@@ -5,7 +5,7 @@ from plotly.subplots import make_subplots
 import matplotlib.pyplot as plt
 
 def count_jordart_entries():
-    with open("../aggregated_data.json", "r", encoding="utf-8") as infile:
+    with open("../jordbruksverket_data/jordbruksverket_data.json", "r", encoding="utf-8") as infile:
         data = json.load(infile)
     
     jordart_counter = Counter()

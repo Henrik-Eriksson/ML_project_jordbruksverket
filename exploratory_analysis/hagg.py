@@ -24,7 +24,7 @@ def get_hagg_data(lan="", from_year=None):
       - result/havrebladlus_data.json
       - result/bladlus_data.json
     """
-    with open("../aggregated_data.json", "r", encoding="utf-8") as infile:
+    with open("../jordbruksverket_data/jordbruksverket_data.json", "r", encoding="utf-8") as infile:
         data = json.load(infile)
 
     if from_year is None:
