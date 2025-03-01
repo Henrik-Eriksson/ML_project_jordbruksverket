@@ -1,7 +1,8 @@
 # ML_project_jordbruksverket
 
-Check what stations have the specific paramtere data
-https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/[PARAMTER].json
+
+
+
 
 Exploratory Analysis
 
