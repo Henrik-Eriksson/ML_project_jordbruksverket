@@ -6,6 +6,8 @@ from pyproj import Transformer
 from folium import Element, JavascriptLink, CssLink
 from collections import defaultdict
 
+
+print("Generating static HTML (takes like 30secs).....")
 def is_inside_sweden(lat, lon, lat_min=55.0, lat_max=70.0, lon_min=10.0, lon_max=25.0):
     return lat_min <= lat <= lat_max and lon_min <= lon <= lon_max
 
@@ -35,7 +37,7 @@ def get_earliest_date(record):
 
 transformer = Transformer.from_crs("EPSG:3006", "EPSG:4326", always_xy=True)
 
-with open("../../aggregated_data.json", "r", encoding="utf-8") as infile:
+with open("../../jordbruksverket_data/jordbruksverket_data.json", "r", encoding="utf-8") as infile:
     data = json.load(infile)
 
 indexed_records = []  # store (record_id, record)

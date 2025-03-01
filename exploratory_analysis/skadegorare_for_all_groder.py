@@ -4,7 +4,7 @@ from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 
 # Load aggregated data
-with open("../aggregated_data.json", "r", encoding="utf-8") as infile:
+with open("../jordbruksverket_data/jordbruksverket_data.json", "r", encoding="utf-8") as infile:
     data = json.load(infile)
 
 # Compute counts of unique "skadegorare" for each "groda" (crop),

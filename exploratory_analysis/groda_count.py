@@ -2,7 +2,7 @@ import json
 import matplotlib.pyplot as plt
 
 # Load the aggregated data
-with open("../aggregated_data.json", "r", encoding="utf-8") as infile:
+with open("../jordbruksverket_data/jordbruksverket_data.json", "r", encoding="utf-8") as infile:
     data = json.load(infile)
 
 # Create a dictionary to count records per "groda"

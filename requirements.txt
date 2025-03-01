@@ -1,0 +1,9 @@
+folium==0.19.4
+gdown==5.2.0
+matplotlib==3.10.1
+numpy==2.2.3
+pandas==2.2.3
+plotly==6.0.0
+pyproj==3.7.1
+rarfile==4.2
+Requests==2.32.3

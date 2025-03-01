@@ -41,7 +41,7 @@ for year in range(1980, 2025):
     time.sleep(0.5)
 
 # Write the aggregated data to a JSON file
-with open("../aggregated_data.json", "w", encoding="utf-8") as outfile:
+with open("../jordbruksverket_data.json", "w", encoding="utf-8") as outfile:
     json.dump(all_data, outfile, ensure_ascii=False, indent=2)
 
 print("Data fetching complete. Aggregated data saved to aggregated_data.json")

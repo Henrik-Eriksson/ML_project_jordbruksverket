@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 groda = "Höstvete"
 
 # Load aggregated data
-with open("../aggregated_data.json", "r", encoding="utf-8") as infile:
+with open("../jordbruksverket_data/jordbruksverket_data.json", "r", encoding="utf-8") as infile:
     data = json.load(infile)
 
 # Create a dictionary to count unique "skadegorare" for groda "Höstvete" (only if varde != 0.0)
