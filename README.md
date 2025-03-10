@@ -1,5 +1,7 @@
 # ML_project_jordbruksverket
 
+training the model here:
+https://colab.research.google.com/drive/1iES9eY1DrjK8k7w0x9VMVdbcOFzQonV7#scrollTo=AP2EEy7M_ZuN
 
 
 We are utilizing weather data from the (Global Forecast System) which is a weather prediction model predicting as much as 16 days ahead.
