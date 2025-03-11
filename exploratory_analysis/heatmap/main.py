@@ -9,7 +9,8 @@ from collections import defaultdict
 
 print("Generating static HTML (takes like 30secs).....")
 def is_inside_sweden(lat, lon, lat_min=55.0, lat_max=70.0, lon_min=10.0, lon_max=25.0):
-    return lat_min <= lat <= lat_max and lon_min <= lon <= lon_max
+    #return lat_min <= lat <= lat_max and lon_min <= lon <= lon_max
+    return True
 
 def gather_pests(record):
     """Return a set of all 'skadegorare' (pests) found in the record."""

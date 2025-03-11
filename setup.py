@@ -25,11 +25,11 @@ def download_assets():
     import rarfile
 
     #google drive id
-    file_id = "1OaCo_nuyXaynwzCUkVGcuUmCPqwOiJi2"
+    file_id = "1zl6ghwo1R5t11DP56-CY4NwSXKHk95x9"
     url = f"https://drive.google.com/uc?id={file_id}&export=download"
 
     #temp output
-    output = "large_file.rar"
+    output = "jordbruksverket_data/jordbruksverket_data.json"
 
     print("Downloading file from Google Drive...")
     # gdown will handle the confirmation automatically
@@ -42,18 +42,6 @@ def download_assets():
     else:
         print("Download successful, unpacking the file...")
 
-    #attempt to extract the rar archive
-    try:
-        with rarfile.RarFile(output) as rf:
-            rf.extractall(".")
-        print("Unpacking complete.")
-    except rarfile.Error as e:
-        print("Error extracting rar file:", e)
-        exit(1)
-
-    #clean up by removing the rar file after extraction
-    os.remove(output)
-    print("Cleanup complete, rar file removed.")
 
 
 if __name__ == "__main__":
