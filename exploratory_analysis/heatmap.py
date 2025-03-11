@@ -14,7 +14,7 @@ def is_inside_sweden(lat, lon, lat_min=55.0, lat_max=70.0, lon_min=10.0, lon_max
 transformer = Transformer.from_crs("EPSG:3006", "EPSG:4326", always_xy=True)
 
 # Load the aggregated data from file.
-with open("../aggregated_data.json", "r", encoding="utf-8") as infile:
+with open("../jordbruksverket_data.json", "r", encoding="utf-8") as infile:
     data = json.load(infile)
 
 # Prepare lists for the heatmap and for filtered records (inside Sweden).
