@@ -1,6 +1,24 @@
 # ML_project_jordbruksverket
 
+## Jupyter Notebooks
 
+data&json files can be found public here: [Google Drive](https://drive.google.com/drive/folders/10BE1MqYS6C0GrExK3MrMJqkY0C2szWOg?usp=sharing)
+
+(NEEDED TO RUN THE CELLS IN THE NOTEBOOKS!)
+
+### Fetching data from GFS
+
+GFS 0.25 deg 2015-present 
+
+[Colab Notebook: (Retrieving Data from GFS)](https://colab.research.google.com/drive/1Ahj0wkcGkgYc-S7XyKM-uBMObADCJct8#scrollTo=PUeRYdQWFdbk)
+
+### ML Preprocessing & Training
+Training the Random Forest here
+
+[Colab Notebook: (Training RF on the weather&local feature data)](https://colab.research.google.com/drive/1iES9eY1DrjK8k7w0x9VMVdbcOFzQonV7)
+
+
+## General Info
 
 We are utilizing weather data from the (Global Forecast System) which is a weather prediction model predicting as much as 16 days ahead.
 Three resolutions available: **0.25 deg**, 0.5 deg, 1 deg.
@@ -9,10 +27,8 @@ Three resolutions available: **0.25 deg**, 0.5 deg, 1 deg.
 
 
 We are currently fetching and looking at the 0.25 deg model has data available from 2015-present.
-[Fetched from here](https://rda.ucar.edu/datasets/d084001/)
-Look at the google colab [Jupyter Notebook](https://colab.research.google.com/drive/1Ahj0wkcGkgYc-S7XyKM-uBMObADCJct8?usp=sharing) on how we are fetching this data.
 
-## Running Instructions
+## Running Instructions (Exploratory Analysis)
 
 Before working with the data in the repository and/or using the heatmap tool, It is necessary as a first time to download all required packages and the data itself which is located on google drive, We have made a simple script for this, Which assumes python 3+ and pip is already installed
 
