@@ -1,10 +1,8 @@
-// filterWorker.js
-// This worker receives the global data and current filter settings,
-// runs the heavy filtering logic, and posts the filtered records back.
+//A Web Worker script that filters records by date, crop, and pest criteria using indexed lookups and set operations, 
+//then returns processed, qualifying records for display (e.g. in a heatmap).
 
 self.onmessage = function (e) {
   var data = e.data;
-  // Helper functions – these mirror your main_logic.js versions.
   function intersectSets(a, b) {
     var out = new Set();
     a.forEach(function (x) {
@@ -55,7 +53,6 @@ self.onmessage = function (e) {
     });
     return result;
   }
-  // processRecord – similar to your processRecord function.
   function processRecord(record, selectedPests, includeZeroPest, strictPestMode) {
     var result = {
       lan: record.lan,
@@ -107,7 +104,6 @@ self.onmessage = function (e) {
     result.pests = Array.from(pestSet);
     return result;
   }
-  // recordQualifies – similar to your function.
   function recordQualifies(record, selectedPests, includeZeroPest) {
     var gList = record.graderingstillfalleList;
     if (!gList) return false;
@@ -135,10 +131,6 @@ self.onmessage = function (e) {
     return true;
   }
   
-  // Use the data from the message:
-  // data must include: idToRecord, dateIndex, grodaIndex, pestIndex, 
-  // selectedMinDate, selectedMaxDate, selectedGrodas (array), selectedPests (array),
-  // includeZeroPest, strictPestMode.
   var dateSet = dateRangeIDs(data.selectedMinDate, data.selectedMaxDate, data.dateIndex);
   var grodaSet = unionOfGrodas(data.selectedGrodas, data.grodaIndex);
   var pestSet = unionOfPests(data.selectedPests, data.pestIndex);

@@ -4,6 +4,8 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import matplotlib.pyplot as plt
 
+#Counts entries per "jordart" and related pests with non-zero values, saves the results, and creates visualizations using Matplotlib and Plotly.
+
 def count_jordart_entries():
     with open("../jordbruksverket_data/jordbruksverket_data.json", "r", encoding="utf-8") as infile:
         data = json.load(infile)
@@ -51,14 +53,8 @@ def plot_jordart_counts(counts):
     plt.show()
 
 def plot_skadegorare_counts(skadegorare_counts, output_file="result/jordart_skadegorare_counts.html"):
-    # Count the number of subplots needed
     num_plots = len([k for k, v in skadegorare_counts.items() if v])
 
-    if num_plots == 0:
-        print("No data to plot.")
-        return
-
-    # Create subplots
     fig = make_subplots(rows=num_plots, cols=1, subplot_titles=[f"Skadegorare Counts for {jordtyp}" for jordtyp in skadegorare_counts.keys() if skadegorare_counts[jordtyp]])
 
     row = 1
@@ -76,19 +72,14 @@ def plot_skadegorare_counts(skadegorare_counts, output_file="result/jordart_skad
 
     fig.update_layout(height=300 * num_plots, title_text="Skadegorare Counts by Jordtyp", showlegend=False)
 
-    # **Save the figure as an HTML file**
     fig.write_html(output_file)
     print(f"Plot saved as {output_file}")
 
 output_file = "result/jordart_counts.json"
 skadegorare_output_file = "result/jordart_skadegorare_count.json"
 
-#Count of jordarts
 counts = count_jordart_entries()
 save_counts_to_file(counts, output_file)
-#plot_jordart_counts(counts)
 
-#Count of skadegorare != 0 based on soiltype
 skadegorare_counts = count_skadegorare_for_all_jordtyper()
 save_counts_to_file(skadegorare_counts, skadegorare_output_file)
-#plot_skadegorare_counts(skadegorare_counts)

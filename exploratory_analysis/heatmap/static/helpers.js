@@ -1,4 +1,4 @@
-// helpers.js
+//Provides helper functions for date conversion, unit transformation, and pest value checks to support filtering and UI logic in the main application.
 console.log("helpers.js loaded.");
 
 function epochToDateString(epoch) {

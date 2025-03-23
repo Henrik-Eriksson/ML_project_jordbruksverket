@@ -32,7 +32,7 @@ def download_assets():
     output = "jordbruksverket_data/jordbruksverket_data.json"
 
     print("Downloading file from Google Drive...")
-    # gdown will handle the confirmation automatically
+    #gdown will handle the confirmation automatically
     gdown.download(url, output, quiet=False)
 
     #verify download size

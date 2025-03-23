@@ -1,15 +1,6 @@
-// region_box.js
+//Implements a draggable, resizable “Region Box” UI to view, expand, filter, and download records by region (län), syncing interactively with the heatmap and global state.
 console.log("region_box.js loaded.");
 
-/**
- * This region box shows a summary for each region (lan) with an integrated
- * checkbox (so you can select/deselect that region), the region name with its record count,
- * and an expand button to view the details. There are also "Select All" and "Deselect All" buttons.
- *
- * The region box is updated each time the filtered records change.
- */
-
-// Global references for the region box elements.
 let regionBoxElem = null;
 let regionBoxContentElem = null;
 let regionBoxHeaderElem = null;
@@ -28,9 +19,7 @@ const maximizedRegionBoxStyle = {
   height: "100%"
 };
 
-/** Called once at DOMContentLoaded to build the region box. */
 function initRegionBox() {
-  // Create the main container.
   regionBoxElem = document.createElement("div");
   regionBoxElem.id = "regionBox";
   regionBoxElem.style.position = "fixed";
@@ -45,7 +34,6 @@ function initRegionBox() {
   regionBoxElem.style.resize = "both";
   document.body.appendChild(regionBoxElem);
 
-  // Header with title, total count, toggle and download buttons.
   regionBoxHeaderElem = document.createElement("div");
   regionBoxHeaderElem.id = "regionBoxHeader";
   regionBoxHeaderElem.style.cursor = "move";
@@ -58,18 +46,15 @@ function initRegionBox() {
     "<button id='downloadJsonBtn'>Download JSON</button>";
   regionBoxElem.appendChild(regionBoxHeaderElem);
 
-  // Create content container for region summaries.
   regionBoxContentElem = document.createElement("div");
   regionBoxContentElem.id = "regionBoxContent";
   regionBoxElem.appendChild(regionBoxContentElem);
 
-  // Make the region box draggable/resizable (requires jQuery UI).
   $(() => {
     $("#regionBox").draggable({ handle: "#regionBoxHeader" });
     $("#regionBox").resizable();
   });
 
-  // Set up toggle and download buttons.
   const toggleBtn = document.getElementById("regionBoxToggle");
   toggleBtn.addEventListener("click", function () {
     if (!isRegionBoxMaximized) {
@@ -103,15 +88,8 @@ function initRegionBox() {
   });
 }
 
-/**
- * Update the region box after filtering.
- * This function groups the filtered records by region (lan) using your precomputed index.
- * It then builds the UI for each region – always showing all regions from window.lanList,
- * with a checkbox (whose checked state reflects window.selectedLans), the region name with its count,
- * and an expand button. "Select All" and "Deselect All" buttons are added at the top.
- */
+
 function updateRegionBox(filteredRecords) {
-  // Build a lookup for filtered records by id.
   let filteredRecordsById = {};
   let filteredIDs = new Set();
   filteredRecords.forEach(rec => {
@@ -121,36 +99,28 @@ function updateRegionBox(filteredRecords) {
     }
   });
 
-  // Group by lan using the precomputed index.
   let regionGroups = {};
   window.lanList.forEach(lan => {
     let lanIDs = window.lanIndex[lan] || [];
-    // Even if a region has 0 records, we want to display it.
     let groupIDs = lanIDs.filter(id => filteredIDs.has(id));
     regionGroups[lan] = groupIDs.map(id => filteredRecordsById[id]);
   });
 
-  // Update total count display.
   const totalSpan = document.getElementById("totalRecordCount");
   if (totalSpan) {
     totalSpan.innerText = "Total: " + filteredRecords.length;
   }
 
-  // Build the region box HTML.
   if (!regionBoxContentElem) return;
   let html = "";
 
-  // Add "Select All" / "Deselect All" buttons.
   html += `<div style="margin-bottom:5px;">` +
           `<button id="regionSelectAll">Select All</button> ` +
           `<button id="regionDeselectAll">Deselect All</button>` +
           `</div>`;
 
-  // For each region in your global list, create a summary row.
   window.lanList.forEach(lan => {
-    // If there are no records, groupIDs is empty so count is 0.
     const count = (regionGroups[lan] && regionGroups[lan].length) || 0;
-    // Build a row with a checkbox, region name (with count), and an expand button.
     html += `<div class="region-summary" style="margin-bottom:5px; border-bottom:1px solid #eee; padding-bottom:5px;">`;
     html += `<label style="display:inline-block;">`;
     const checked = window.selectedLans.has(lan) ? "checked" : "";
@@ -164,7 +134,6 @@ function updateRegionBox(filteredRecords) {
 
   regionBoxContentElem.innerHTML = html;
 
-  // Attach event listeners to the region checkboxes.
   const regionCheckboxes = regionBoxContentElem.querySelectorAll(".region-checkbox");
   regionCheckboxes.forEach(cb => {
     cb.addEventListener("change", function () {
@@ -178,7 +147,6 @@ function updateRegionBox(filteredRecords) {
     });
   });
 
-  // Attach event listeners to the "Select All" and "Deselect All" buttons.
   const selectAllBtn = document.getElementById("regionSelectAll");
   const deselectAllBtn = document.getElementById("regionDeselectAll");
   if (selectAllBtn) {
@@ -190,9 +158,6 @@ function updateRegionBox(filteredRecords) {
   }
   if (deselectAllBtn) {
     deselectAllBtn.addEventListener("click", function () {
-      // Instead of clearing, we want to keep all rows visible.
-      // Clearing window.selectedLans means no region is selected and heatmap will show 0 records.
-      // (This is your desired behavior.)
       window.lanList.forEach(lan => window.selectedLans.delete(lan));
       updateHeatmap()
       
@@ -200,7 +165,6 @@ function updateRegionBox(filteredRecords) {
     });
   }
 
-  // Setup expand/collapse for each region row.
   const expandButtons = regionBoxContentElem.getElementsByClassName("expand-btn");
   [...expandButtons].forEach(btn => {
     btn.addEventListener("click", function () {

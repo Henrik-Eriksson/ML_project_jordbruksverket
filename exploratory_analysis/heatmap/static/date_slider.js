@@ -1,13 +1,11 @@
-// date_slider.js
 console.log("date_slider.js loaded.");
+// Creates a floating date range slider UI using noUiSlider, with input boxes, period shift buttons (Day/Week/Year), and interactive updates to trigger a heatmap refresh.
 
 document.addEventListener("DOMContentLoaded", function () {
   createDateSliderUI();
 });
 
-/** 
- * Build the date slider container, the start/end inputs, and the shift buttons.
- */
+
 function createDateSliderUI() {
   const dateSliderContainer = document.createElement("div");
   dateSliderContainer.style.position = "fixed";
@@ -21,12 +19,10 @@ function createDateSliderUI() {
   dateSliderContainer.style.border = "1px solid #ccc";
   document.body.appendChild(dateSliderContainer);
 
-  // We assume `window.minDateEpoch` and `window.maxDateEpoch` are set from main.py
-  // We also assume global selectedMinDate, selectedMaxDate exist (you can store them on window)
+
   window.selectedMinDate = window.minDateEpoch;
   window.selectedMaxDate = window.maxDateEpoch;
 
-  // Make an input container
   const inputContainer = document.createElement("div");
   inputContainer.style.display = "flex";
   inputContainer.style.justifyContent = "space-between";
@@ -46,7 +42,6 @@ function createDateSliderUI() {
   inputContainer.appendChild(endDateInput);
   dateSliderContainer.appendChild(inputContainer);
 
-  // The noUiSlider element
   const dateSliderElement = document.createElement("div");
   dateSliderContainer.appendChild(dateSliderElement);
 
@@ -97,7 +92,6 @@ function createDateSliderUI() {
     dateSliderElement.noUiSlider.set([lowerVal, typedEpoch]);
   });
 
-  // SHIFT buttons
   const shiftContainer = document.createElement("div");
   shiftContainer.style.textAlign = "center";
   shiftContainer.style.marginTop = "10px";
@@ -134,7 +128,6 @@ function createDateSliderUI() {
   });
   shiftContainer.appendChild(periodContainer);
 
-  // - button
   const minusBtn = document.createElement("button");
   minusBtn.innerText = "-";
   minusBtn.style.backgroundColor = "red";
@@ -151,7 +144,6 @@ function createDateSliderUI() {
   });
   shiftContainer.appendChild(minusBtn);
 
-  // + button
   const plusBtn = document.createElement("button");
   plusBtn.innerText = "+";
   plusBtn.style.backgroundColor = "green";
