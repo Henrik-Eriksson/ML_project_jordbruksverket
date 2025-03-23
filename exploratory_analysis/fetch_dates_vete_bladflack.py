@@ -1,6 +1,7 @@
 import json
 from datetime import datetime
 
+#Extracts unique grading dates (after 2015) for specific crops where "bladfläcksvampar" was observed, and saves them to a JSON file.
 def extract_unique_dates(data):
     unique_dates = set()
     for record in data:
@@ -9,16 +10,15 @@ def extract_unique_dates(data):
             for event in events:
                 date = event.get("graderingsdatum")
                 if date and date > "2015-01-01":
-                    # Check if the pest "bladfläcksvampar" is present in any measurement.
                     for measurement in event.get("graderingList", []):
                         if measurement.get("skadegorare", "").lower() == "bladfläcksvampar":
                             unique_dates.add(date)
-                            break  # Stop after finding the matching pest in the current event.
+                            break  
     return sorted(unique_dates)
 
 def main():
     input_file = "../jordbruksverket_data/jordbruksverket_data.json"
-    output_file = "result/unique_dates3_WITH_MORE.json"
+    output_file = "result/unique_dates.json"
     
     with open(input_file, "r", encoding="utf-8") as f:
         data = json.load(f)

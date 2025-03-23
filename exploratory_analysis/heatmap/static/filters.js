@@ -1,12 +1,13 @@
 console.log("filters.js loaded.");
 
+// Creates dynamic UI filters for crop types ("groda") and pests, including sorting, (de)select all, strict/zero modes, and updates heatmap and filters interactively.
+
 document.addEventListener("DOMContentLoaded", function () {
   window.selectedGrodas = new Set(window.grodaList || []);
   window.selectedPests = new Set(window.pestList || []);
   window.includeZeroPest = false;
   window.strictPestMode = false;
 
-  // We'll store user-chosen sort mode here:
   window.grodaSortMode = "nameAsc"; 
   window.pestSortMode  = "nameAsc";
 
@@ -14,7 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
   createPestFilterUI();
 });
 
-// ==================== G R O D A ====================
 function createGrodaFilterUI() {
   const grodaContainer = document.createElement("div");
   grodaContainer.style.position = "fixed";
@@ -33,7 +33,6 @@ function createGrodaFilterUI() {
   title.style.marginBottom = "5px";
   grodaContainer.appendChild(title);
 
-  // Sort mode select
   const grodaSortSelect = document.createElement("select");
   const grodaSortOptions = [
     { value: "nameAsc",  label: "Name Asc" },
@@ -54,17 +53,12 @@ function createGrodaFilterUI() {
   });
   grodaContainer.appendChild(grodaSortSelect);
 
-  // row of select/deselect
   const selAllBtn = document.createElement("button");
   selAllBtn.innerText = "Select All";
   selAllBtn.style.marginRight = "5px";
   selAllBtn.addEventListener("click", function () {
     window.selectedGrodas = new Set(window.grodaList);
-    // Recompute
     updateHeatmap();
-    // Now we have new currentFilteredRecords => update counts & checkboxes
-    //updateGrodaCounts();
-    //updatePestCounts();
     rebuildGrodaCheckboxes();
     rebuildPestCheckboxes();
   });
@@ -74,16 +68,12 @@ function createGrodaFilterUI() {
   desAllBtn.innerText = "Deselect All";
   desAllBtn.addEventListener("click", function () {
     window.selectedGrodas = new Set();
-    // Recompute
     updateHeatmap();
-    //updateGrodaCounts();
-    //updatePestCounts();
     rebuildGrodaCheckboxes();
     rebuildPestCheckboxes();
   });
   grodaContainer.appendChild(desAllBtn);
 
-  // container for the actual checkboxes
   const grodaListDiv = document.createElement("div");
   grodaListDiv.id = "grodaListDiv";
   grodaListDiv.style.marginTop = "10px";
@@ -91,7 +81,6 @@ function createGrodaFilterUI() {
 
   document.body.appendChild(grodaContainer);
 
-  // Build them initially
   rebuildGrodaCheckboxes();
 }
 
@@ -100,14 +89,12 @@ function rebuildGrodaCheckboxes() {
   if (!container) return;
   container.innerHTML = "";
 
-  // gather items
   const items = window.grodaList.map(g => {
     const isSelected = window.selectedGrodas.has(g);
-    const c = window.grodaCounts[g] || 0; // after updateGrodaCounts
+    const c = window.grodaCounts[g] || 0; 
     return { name: g, checked: isSelected, count: c };
   });
 
-  // sort
   items.sort((a, b) => {
     switch (window.grodaSortMode) {
       case "nameAsc":  return a.name.localeCompare(b.name);
@@ -129,8 +116,6 @@ function rebuildGrodaCheckboxes() {
       else window.selectedGrodas.delete(obj.name);
 
       updateHeatmap();
-      //updateGrodaCounts();
-      //updatePestCounts();
       rebuildGrodaCheckboxes();
       rebuildPestCheckboxes();
     });
@@ -141,7 +126,6 @@ function rebuildGrodaCheckboxes() {
   });
 }
 
-// ==================== P E S T ====================
 function createPestFilterUI() {
   const pestContainer = document.createElement("div");
   pestContainer.style.position = "fixed";
@@ -160,7 +144,6 @@ function createPestFilterUI() {
   pestTitle.style.marginBottom = "5px";
   pestContainer.appendChild(pestTitle);
 
-  // Strict Pest Mode
   const strictDiv = document.createElement("div");
   strictDiv.style.marginBottom = "5px";
   const strictCb = document.createElement("input");
@@ -170,8 +153,6 @@ function createPestFilterUI() {
   strictCb.addEventListener("change", function () {
     window.strictPestMode = strictCb.checked;
     updateHeatmap(); 
-    //updateGrodaCounts();
-    //updatePestCounts();
     rebuildGrodaCheckboxes();
     rebuildPestCheckboxes();
   });
@@ -179,7 +160,6 @@ function createPestFilterUI() {
   strictDiv.appendChild(document.createTextNode(" Strict Pest Mode"));
   pestContainer.appendChild(strictDiv);
 
-  // Include pest=0
   const zeroDiv = document.createElement("div");
   zeroDiv.style.marginBottom = "5px";
   const zeroCb = document.createElement("input");
@@ -189,8 +169,6 @@ function createPestFilterUI() {
   zeroCb.addEventListener("change", function () {
     window.includeZeroPest = zeroCb.checked;
     updateHeatmap(); 
-    //updateGrodaCounts();
-    //updatePestCounts();
     rebuildGrodaCheckboxes();
     rebuildPestCheckboxes();
   });
@@ -198,7 +176,6 @@ function createPestFilterUI() {
   zeroDiv.appendChild(document.createTextNode(" Include pest value = 0"));
   pestContainer.appendChild(zeroDiv);
 
-  // Sorting select
   const pestSortSelect = document.createElement("select");
   const pestSortOptions = [
     { value: "nameAsc",  label: "Name Asc" },
@@ -219,15 +196,12 @@ function createPestFilterUI() {
   });
   pestContainer.appendChild(pestSortSelect);
 
-  // row of select/deselect
   const pestSelAll = document.createElement("button");
   pestSelAll.innerText = "Select All";
   pestSelAll.style.marginRight = "5px";
   pestSelAll.addEventListener("click", function () {
     window.selectedPests = new Set(window.pestList);
     updateHeatmap();
-    //updateGrodaCounts();
-    //updatePestCounts();
     rebuildGrodaCheckboxes();
     rebuildPestCheckboxes();
   });
@@ -238,8 +212,6 @@ function createPestFilterUI() {
   pestDesAll.addEventListener("click", function () {
     window.selectedPests = new Set();
     updateHeatmap();
-    //updateGrodaCounts();
-    //updatePestCounts();
     rebuildGrodaCheckboxes();
     rebuildPestCheckboxes();
   });
@@ -294,8 +266,6 @@ function rebuildPestCheckboxes() {
       if (cb.checked) window.selectedPests.add(obj.name);
       else window.selectedPests.delete(obj.name);
       updateHeatmap();
-      //updateGrodaCounts();
-      //updatePestCounts();
       rebuildGrodaCheckboxes();
       rebuildPestCheckboxes();
     });
